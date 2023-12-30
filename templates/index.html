@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Classification</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            color: #fff;
+            /* background: linear-gradient(135deg, #3498db, #2ecc71); Gradient background */
+            background: linear-gradient(135deg, #316879, #7fe7dc, #147a06, #ced7d8); /* Gradient background */
+        }
+
+        header {
+            background: linear-gradient(45deg, #3498db, #8e44ad), url('https://pixabay.com/id/vectors/data-menyortir-klasifikasi-laporan-7042739/') center/cover no-repeat;
+            width: 75%;
+            height: 50vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
+        h1, h2 {
+            margin: 0;
+        }
+
+        form {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        input[type="file"] {
+            display: none;
+        }
+
+        label {
+            cursor: pointer;
+            background-color: #4caf50;
+            color: white;
+            padding: 10px 15px;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        button {
+            background-color: #3498db;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-left: 10px;
+        }
+
+        #selected-image {
+            max-width: 100%;
+            margin-top: 20px;
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Image Classification</h1>
+        <h2>Upload an image and predict its content</h2>
+    </header>
+
+    <!-- Click to predict -->
+    <form action="/predict" method="post" enctype="multipart/form-data">
+        <label for="file">Choose an image</label>
+        <input type="file" id="file" name="file" accept=".jpg, .jpeg, .png" onchange="previewImage(event)">
+        <button type="submit">Predict</button>
+    </form>
+
+    <!-- Display selected image -->
+    <div>
+        <h2>Selected Image:</h2>
+        <img id="selected-image" src="" alt="Selected Image">
+    </div>
+
+    <!-- JavaScript for image preview -->
+    <script>
+        function previewImage(event) {
+            var input = event.target;
+            var imageContainer = document.getElementById('selected-image');
+            var image = input.files[0];
+
+            if (image) {
+                var reader = new FileReader();
+                reader.onload = function(e) {
+                    imageContainer.src = e.target.result;
+                }
+                reader.readAsDataURL(image);
+            } else {
+                imageContainer.src = "";
+            }
+        }
+    </script>
+</body>
+</html>

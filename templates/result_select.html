@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;  
+            background: linear-gradient(135deg, #3494e6, #ec6ead);
+            color: #fff;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .contact-section {
+            padding: 50px 0;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        .title-box {
+            text-align: center;
+            padding: 10px 0;
+        }
+
+        .sec-title {
+            font-size: 2em;
+            color: #aa5353;
+        }
+
+        .content-column {
+            margin-bottom: 30px;
+        }
+
+        .inner-content {
+            padding: 10px;
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .contact-form-area {
+            margin: 0;
+            color: #333;
+            text-transform: capitalize;
+            font-size: 1.2em;
+            font-weight: bold;
+        }
+
+        .sidebar-column {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .sidebar-content {
+            text-align: center;
+            background-color: #f2f2f2; /* Set a light gray background color for the sidebar content */
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 15px;
+        }
+
+        .img-fluid {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        p {
+            margin: 0;
+            padding: 10px 0;
+        }
+    </style>
+</head>
+<body>
+    <section class="contact-section" id="result">
+        <div class="container">
+            <div class="title-box">
+                <div class="sec-title">Prediction Result</div>
+            </div>
+            <div class="row">
+                <div class="col-lg-8 col-md-12 col-sm-12 content-column">
+                    <div class="inner-content">
+                        <div class="contact-form-area">
+                            <p>Predicted Label is: {{ labels[pred] }}</p>
+                            <p>Accuracy : {{ (probs|max) }}% | Prediction Time : {{ (run_time) }} second</p>
+                            <input type="hidden" id="probability" value={{(probs|max)}}>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-12 col-sm-12 sidebar-column">
+                    <div class="sidebar-content">
+                        <img src="{{ url_for('static', filename=img) }}" alt="" class="img-fluid">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+</html>
